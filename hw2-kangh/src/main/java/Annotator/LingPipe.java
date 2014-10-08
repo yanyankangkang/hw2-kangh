@@ -43,7 +43,7 @@ public class LingPipe extends JCasAnnotator_ImplBase {
    */
   private ConfidenceChunker chunker = null;
   
-  private static double CONFIDENCE = 0.3;
+  private static double CONFIDENCE = 0.2;
 
   @Override
   /** 

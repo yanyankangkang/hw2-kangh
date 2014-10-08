@@ -8,7 +8,7 @@
                 <nameValuePair>
                     <name>inputFile</name>
                     <value>
-                        <string>/home/mac/workspace/11791/hw2-kangh/hw2.in</string>
+                        <string>/home/mac/git/hw2-kangh/hw2-kangh/hw2.in</string>
                     </value>
                 </nameValuePair>
             </configurationParameterSettings>
@@ -42,13 +42,13 @@
                 <nameValuePair>
                     <name>outputFile</name>
                     <value>
-                        <string>/home/mac/workspace/11791/hw2-kangh/hw2-kangh.out</string>
+                        <string>/home/mac/git/hw2-kangh/hw2-kangh/hw2-kangh.out</string>
                     </value>
                 </nameValuePair>
                 <nameValuePair>
                     <name>missing</name>
                     <value>
-                        <string>out.txt</string>
+                        <string>/home/mac/git/hw2-kangh/hw2-kangh/out.txt</string>
                     </value>
                 </nameValuePair>
             </configurationParameterSettings>

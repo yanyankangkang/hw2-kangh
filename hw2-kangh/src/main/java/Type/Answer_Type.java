@@ -14,7 +14,7 @@ import org.apache.uima.cas.Feature;
 import edu.cmu.deiis.types.Annotation_Type;
 
 /** 
- * Updated by JCasGen Sun Oct 05 19:19:28 EDT 2014
+ * Updated by JCasGen Mon Oct 06 21:41:18 EDT 2014
  * @generated */
 public class Answer_Type extends Annotation_Type {
   /** @generated 

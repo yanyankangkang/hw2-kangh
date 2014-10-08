@@ -23,6 +23,6 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/home/mac/workspace/11791/hw2-kangh/abner.jar"/>
+	<classpathentry kind="lib" path="/home/mac/git/hw2-kangh/hw2-kangh/abner.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

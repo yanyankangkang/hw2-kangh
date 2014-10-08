@@ -6,13 +6,10 @@
     <delegateAnalysisEngine key="LingPipe">
       <import name="descriptors.LingPipe"/>
     </delegateAnalysisEngine>
-  <delegateAnalysisEngine key="Evaluator">
-      <import name="descriptors.Evaluator"/>
-    </delegateAnalysisEngine>
-    <delegateAnalysisEngine key="ABner">
+  <delegateAnalysisEngine key="ABner">
       <import name="descriptors.ABner"/>
     </delegateAnalysisEngine>
-  </delegateAnalysisEngineSpecifiers>
+    </delegateAnalysisEngineSpecifiers>
   <analysisEngineMetaData>
     <name>aeDescriptor</name>
     <description/>
@@ -24,8 +21,7 @@
       <fixedFlow>
         <node>LingPipe</node>
       <node>ABner</node>
-        <node>Evaluator</node>
-      </fixedFlow>
+        </fixedFlow>
     </flowConstraints>
     <fsIndexCollection/>
     <capabilities>

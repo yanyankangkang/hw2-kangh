@@ -14,16 +14,23 @@ import org.apache.uima.resource.ResourceInitializationException;
 import org.apache.uima.util.Progress;
 
 import Type.Sentence;
-/** Description of class Reader 
-* @author Kang Huang
-* @version 1.0 Build on Sep 23, 2014.
-*/
+
+/**
+ * Description of class Reader
+ * 
+ * @author Kang Huang
+ * @version 1.0 Build on Sep 23, 2014.
+ */
 public class Reader extends CollectionReader_ImplBase {
 
   private File InputFile;
+
   private boolean read_flag = false;
+
   Scanner reader;
+
   JCas jcas = null;
+
   public void initialize() throws ResourceInitializationException {
     System.out.println((String) getConfigParameterValue("inputFile"));
     InputFile = new File((String) getConfigParameterValue("inputFile"));
@@ -44,22 +51,22 @@ public class Reader extends CollectionReader_ImplBase {
     } catch (CASException e) {
       throw new CollectionException(e);
     }
-      String textLine = "";
-     // text += reader.nextLine();
-     // text += "\n";
-      textLine = reader.nextLine();
-      String s[] = textLine.split(" ", 2);
-      Sentence Line = new Sentence(jcas);
-      Line.setID(s[0]);
-      Line.setSentence(s[1]);
-      Line.addToIndexes(jcas);
-  // jcas.setDocumentText(text);
+    String textLine = "";
+    // text += reader.nextLine();
+    // text += "\n";
+    textLine = reader.nextLine();
+    String s[] = textLine.split(" ", 2);
+    Sentence Line = new Sentence(jcas);
+    Line.setID(s[0]);
+    Line.setSentence(s[1]);
+    Line.addToIndexes(jcas);
+    // jcas.setDocumentText(text);
   }
 
   @Override
   public void close() throws IOException {
     // TODO Auto-generated method stub
-      reader.close();
+    reader.close();
   }
 
   @Override
@@ -71,11 +78,9 @@ public class Reader extends CollectionReader_ImplBase {
   @Override
   public boolean hasNext() throws IOException, CollectionException {
     // TODO Auto-generated method stub
-   /* if (!read_flag) {
-      read_flag = true;
-      return true;
-    }
-    return false;*/
+    /*
+     * if (!read_flag) { read_flag = true; return true; } return false;
+     */
     return reader.hasNext();
   }
 

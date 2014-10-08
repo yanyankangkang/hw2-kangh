@@ -18,37 +18,57 @@ import org.apache.uima.jcas.tcas.Annotation;
 import org.apache.uima.resource.ResourceInitializationException;
 import org.apache.uima.resource.ResourceProcessException;
 
+import Annotator.Logisitic;
+import Type.Abner;
 import Type.Answer;
 import Type.Lingpipe;
 import Type.Sentence;
-/** Description of class Consumer 
-* @author Kang Huang
-* @version 1.0 Build on Sep 23, 2014.
-*/
+
+/**
+ * Description of class Consumer
+ * 
+ * @author Kang Huang
+ * @version 1.0 Build on Sep 23, 2014.
+ */
 public class Ouput extends CasConsumer_ImplBase {
   private File outputFile = null;
+
   private File out = null;
+
   private static String outputPath = "outputFile";
+
   private static String missWordFilePath = "missing";
 
   private Writer writer = null;
-  
+
   private Writer subwriter = null;
-  
+
   private File testFile = null;
 
   private HashMap<String, Integer> table = new HashMap<String, Integer>();
 
   private int hit = 0, miss = 0, words = 0;
 
+  private HashMap<String, Lingpipe> ling_dict = new HashMap<String, Lingpipe>();
+
+  private double X[][] = new double[50][2];
+
+  private double y[] = new double[50];
+
+  private int N = 0;
+
+  private Logisitic Model;
+
   @Override
   public void initialize() throws ResourceInitializationException {
+
+    Model = new Logisitic(2);
     // System.out.println("*************");
     try {
       outputFile = new File((String) getConfigParameterValue(outputPath));
       writer = new BufferedWriter(new FileWriter(outputFile));
-     // out = new File((String) getConfigParameterValue(missWordFilePath));
-     // subwriter = new BufferedWriter(new FileWriter(out));
+      // out = new File((String) getConfigParameterValue(missWordFilePath));
+      // subwriter = new BufferedWriter(new FileWriter(out));
     } catch (FileNotFoundException e) {
       e.printStackTrace();
     } catch (IOException e) {
@@ -62,11 +82,11 @@ public class Ouput extends CasConsumer_ImplBase {
       // TODO Auto-generated catch block
       e.printStackTrace();
     }
-
     while (dict.hasNext()) {
-      table.put(dict.nextLine(), 0);
+      String temp[] = dict.nextLine().split("\\|");
+      table.put(temp[2], 0);
     }
-      words = table.size();
+    words = table.size();
   }
 
   @Override
@@ -78,64 +98,76 @@ public class Ouput extends CasConsumer_ImplBase {
     } catch (CASException e) {
       throw new ResourceProcessException(e);
     }
-    // HashMap<String, Integer> hash = new HashMap<String, Integer>();
-    FSIterator<Annotation> it = jcas.getAnnotationIndex(Answer.type).iterator();
-    FSIterator<Annotation> line_it = jcas.getAnnotationIndex(Sentence.type).iterator();
-    Sentence Line = (Sentence) line_it.next();
-    while (it.hasNext()) {
-      Answer res = (Answer) it.next();
-    //  System.out.println(line_it.next());
-      String phrase = res.getWords();
-      int  outershift = countBlanks(Line.getSentence(), 0, res.getBegin() );
-      int  innershift = countBlanks(Line.getSentence(), res.getBegin(), res.getEnd());
-      try {
-        String ans = res.getID() + "|" + (res.getBegin() - outershift) + " "
-                + (res.getEnd() - outershift - innershift - 1) + "|"
-                + phrase;
-       // System.out.println(res.getID() + "    " + res.getWords());
-        writer.write(ans + "\n");
-        Match(ans);
-        // }
-      } catch (IOException e) {
-        // TODO Auto-generated catch block
-        e.printStackTrace();
-      }
-   }
-  //  
-  }
-  
-  /*public void close() throws IOException{
-    close();
-  }*/
-  @Override
-  public void destroy(){
-     try {
-      writer.flush();
-      writer.close();
-      System.out.println("Success");
-    } catch (IOException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
+
+    N = 0;
+    FSIterator<Annotation> Lingpipe_it = jcas.getAnnotationIndex(Lingpipe.type).iterator();
+    while (Lingpipe_it.hasNext()) {
+      Lingpipe Ling = (Lingpipe) Lingpipe_it.next();
+      ling_dict.put(Ling.getWords(), Ling);
     }
-      System.out.println(hit + "  " + miss);
-      double P = hit * 1.0 / (hit + miss);
-      double R = hit * 1.0 / words;
-      System.out.println("Precision: " + P + " " + "Recall: " + R + "\n" + "F1-Meause: " + 2 * P * R
-              / (P + R));
+    FSIterator<Annotation> abner_it = jcas.getAnnotationIndex(Abner.type).iterator();
+    while (abner_it.hasNext()) {
+      Abner abner = (Abner) abner_it.next();
+      String word = abner.getWords();
+      X[N][1] = 1;
+      if (ling_dict.containsKey(word)) {
+        X[N][0] = ling_dict.get(word).getConfidence();
+        ling_dict.remove(word);
+      } else {
+        X[N][0] = 0;
+      }
+      if (table.containsKey(word)) {
+        y[N] = 1;
+      } else {
+        y[N] = 0;
+      }
+      N++;
+    }
+
+    for (String word : ling_dict.keySet()) {
+    //  System.out.println(N);
+      X[N][0] = ling_dict.get(word).getConfidence();
+      X[N][1] = 0;
+      if (table.containsKey(word)) {
+        y[N] = 1;
+      } else {
+        y[N] = 0;
+      }
+      N++;
+    }
+    for (int i = 0; i < N; i++){
+      Model.get(X[i], y[i]);
+    }
+    ling_dict.clear();
+    //
   }
+
+  /*
+   * public void close() throws IOException{ close(); }
+   */
+  @Override
+  public void destroy() {
+    double theta[] = Model.Train(1.0);
+    for (int i = 0; i < theta.length; i++){
+      System.out.println(theta[i]);
+    }
+  }
+
   /**
    * find whether phrase exists in standard answer set
+   * 
    * @param phrase
-   * @throws IOException 
+   * @throws IOException
    */
-  private void Match(String phrase) throws IOException{
+  private void Match(String phrase) throws IOException {
     if (table.containsKey(phrase)) {
       hit++;
     } else {
       miss++;
-  //    subwriter.write(phrase + "\n");
+      // subwriter.write(phrase + "\n");
     }
   }
+
   private int countBlanks(String phrase, int start, int end) {
     int count = 0;
     for (int i = start; i < end; i++) {

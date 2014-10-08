@@ -29,11 +29,13 @@ public class logisitic_Example {
       
       public static void main(String Args[]) throws FileNotFoundException{
         logisitic_Example LR = new logisitic_Example();
-        double theta[] = LR.Model.Train(1.0);
-        for (int i = 0; i < theta.length; i++){
+    //    double theta[] = LR.Model.Train(1.0);
+        String s[] = "13132|312312|3123".split("\\|");
+        System.out.println(s[2]);
+      /*  for (int i = 0; i < theta.length; i++){
           System.out.println(theta[i]);
         }
         double x[] = {0, 1, 0, 1, 0};
-        System.out.print(LR.Model.Classify(x, theta));
+        System.out.print(LR.Model.Classify(x, theta));*/
       }
 }
