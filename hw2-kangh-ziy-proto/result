@@ -1,0 +1,29 @@
+15342  4190
+Precision: 0.7854802375588777 Recall: 0.839967150287435
+F1-Meause: 0.81181046114771
+Completed 15000 documents
+Total Time Elapsed: 150858 ms 
+Initialization Time: 2340 ms
+Processing Time: 148518 ms
+
+
+12448  1196
+Precision: 0.9123424215772501 Recall: 0.681522036682179
+F1-Meause: 0.7802187470619575
+Completed 15000 documents
+Total Time Elapsed: 167176 ms 
+Initialization Time: 2294 ms
+Processing Time: 164882 ms
+
+14945  3407
+Precision: 0.8143526591107236 Recall: 0.8182315904735834
+F1-Meause: 0.8162875167272032
+Completed 15000 documents
+Total Time Elapsed: 161748 ms 
+Initialization Time: 2416 ms
+Processing Time: 159332 ms
+
+
+14945  3407
+Precision: 0.8143526591107236 Recall: 0.8182315904735834
+F1-Meause: 0.8162875167272032
