@@ -61,7 +61,7 @@ public class LingPipe extends JCasAnnotator_ImplBase {
    * @return 
    */
   public void initialize(UimaContext context) {
-    modelFile = new File("src/ne-en-bio-genetag.HmmChunker");
+    modelFile = new File("GeneTagModel");/*src/ne-en-bio-genetag.HmmChunker*/
     try {
       chunker = (ConfidenceChunker) AbstractExternalizable.readObject(modelFile);
     } catch (ClassNotFoundException e) {

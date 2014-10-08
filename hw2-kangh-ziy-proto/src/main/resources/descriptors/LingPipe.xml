@@ -37,5 +37,28 @@
       <outputsNewCASes>false</outputsNewCASes>
     </operationalProperties>
   </analysisEngineMetaData>
-  <resourceManagerConfiguration/>
+  <externalResourceDependencies>
+    <externalResourceDependency>
+      <key>HmmChunker</key>
+      <description>the suffix of file.</description>
+      <optional>false</optional>
+    </externalResourceDependency>
+  </externalResourceDependencies>
+  <resourceManagerConfiguration>
+    <externalResources>
+      <externalResource>
+        <name>GeneTagModel</name>
+        <description>Lingpipe Model</description>
+        <fileResourceSpecifier>
+          <fileUrl>neenbiogenetag.HmmChunker</fileUrl>
+        </fileResourceSpecifier>
+      </externalResource>
+    </externalResources>
+    <externalResourceBindings>
+      <externalResourceBinding>
+        <key>HmmChunker</key>
+        <resourceName>GeneTagModel</resourceName>
+      </externalResourceBinding>
+    </externalResourceBindings>
+  </resourceManagerConfiguration>
 </analysisEngineDescription>
