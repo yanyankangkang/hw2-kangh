@@ -101,6 +101,11 @@
 			<artifactId>abner</artifactId>
 			<version>1.5</version>
 		</dependency>
+		<dependency>
+			<groupId>edu.wisc.cs</groupId>
+			<artifactId>Abner</artifactId>
+			<version>1.5</version>
+		</dependency>
 	</dependencies>
 	<scm>
 		<connection>scm:git:git@github.com:yanyankangkang/hw2-kangh.git</connection>

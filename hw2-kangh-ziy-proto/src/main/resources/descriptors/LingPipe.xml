@@ -15,7 +15,7 @@
         <multiValued>false</multiValued>
         <mandatory>false</mandatory>
       </configurationParameter>
-    </configurationParameters>
+    </configurationParameters> 
     <configurationParameterSettings/>
     <typeSystemDescription>
       <imports>

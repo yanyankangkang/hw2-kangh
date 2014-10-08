@@ -12,9 +12,12 @@ import org.apache.uima.analysis_engine.AnalysisEngineProcessException;
 import org.apache.uima.cas.FSIterator;
 import org.apache.uima.jcas.JCas;
 import org.apache.uima.jcas.tcas.Annotation;
+import org.apache.uima.resource.ResourceAccessException;
+import org.apache.uima.resource.ResourceInitializationException;
 
 import Type.Lingpipe;
 import Type.Sentence;
+
 import com.aliasi.chunk.Chunk;
 import com.aliasi.chunk.ConfidenceChunker;
 import com.aliasi.util.AbstractExternalizable;
@@ -60,8 +63,14 @@ public class LingPipe extends JCasAnnotator_ImplBase {
    * 
    * @return 
    */
-  public void initialize(UimaContext context) {
-    modelFile = new File("GeneTagModel");/*src/ne-en-bio-genetag.HmmChunker*/
+  public void initialize(UimaContext context) throws ResourceInitializationException{
+    super.initialize(context);
+    try {
+      modelFile = new File(getContext().getResourceFilePath("HmmChunker"));
+    } catch (ResourceAccessException e1) {
+      // TODO Auto-generated catch block
+      e1.printStackTrace();
+    } //new File("GeneTagModel");/*src/ne-en-bio-genetag.HmmChunker*/
     try {
       chunker = (ConfidenceChunker) AbstractExternalizable.readObject(modelFile);
     } catch (ClassNotFoundException e) {
