@@ -3,7 +3,6 @@
  */
 package Annotator;
 
-import java.io.File;
 import java.io.IOException;
 
 import org.apache.uima.UimaContext;
@@ -12,7 +11,6 @@ import org.apache.uima.analysis_engine.AnalysisEngineProcessException;
 import org.apache.uima.cas.FSIterator;
 import org.apache.uima.jcas.JCas;
 import org.apache.uima.jcas.tcas.Annotation;
-import org.apache.uima.resource.ResourceAccessException;
 import org.apache.uima.resource.ResourceInitializationException;
 
 import Type.Lingpipe;
@@ -25,28 +23,24 @@ import com.aliasi.util.AbstractExternalizable;
 import java.util.Iterator;
 
 /**
- * Filter out gene-related words
+ * Filter out gene-related words using Confidence Named Entity Chunking of LingPipe
  * 
  * @author Kang Huang
  * @version 1.0 Build on Sep 23, 2014.
+ *
  */
 public class LingPipe extends JCasAnnotator_ImplBase {
   /**
    * the maximum length of potential gene words
    */
-  private static final int MAX_N_BEST_CHUNKS = 15;
-
-  /**
-   * the name of NER gene model
-   */
-  private File modelFile = null;
+  private static final int MAX_N_BEST_CHUNKS = 10;
 
   /**
    * the handler to load the model and process given words
    */
   private ConfidenceChunker chunker = null;
 
-  private static double CONFIDENCE = 0.15;
+  private static double CONFIDENCE = 0.05;
 
   @Override
   /** 
@@ -63,16 +57,13 @@ public class LingPipe extends JCasAnnotator_ImplBase {
    * 
    * @return 
    */
-  public void initialize(UimaContext context) throws ResourceInitializationException{
+  public void initialize(UimaContext context) throws ResourceInitializationException {
     super.initialize(context);
+
     try {
-      modelFile = new File(getContext().getResourceFilePath("HmmChunker"));
-    } catch (ResourceAccessException e1) {
-      // TODO Auto-generated catch block
-      e1.printStackTrace();
-    } //new File("GeneTagModel");/*src/ne-en-bio-genetag.HmmChunker*/
-    try {
-      chunker = (ConfidenceChunker) AbstractExternalizable.readObject(modelFile);
+      chunker = (ConfidenceChunker) AbstractExternalizable.readResourceObject(LingPipe.class,
+              (String) context.getConfigParameterValue("GeneTagModel"));
+      // chunker = (ConfidenceChunker) AbstractExternalizable.readResourceObject("/neenbiogenetag");
     } catch (ClassNotFoundException e) {
       // TODO Auto-generated catch block
       e.printStackTrace();
@@ -100,7 +91,7 @@ public class LingPipe extends JCasAnnotator_ImplBase {
     FSIterator<Annotation> it = aCas.getAnnotationIndex(Sentence.type).iterator();
     // while (it.hasNext()) {
     Sentence annot = (Sentence) it.next();
-    String temp = annot.getSentence();
+    String temp = annot.getWords();
     char[] cs = temp.toCharArray();
     Iterator<Chunk> gene_it = chunker.nBestChunks(cs, 0, cs.length, MAX_N_BEST_CHUNKS);
     while (gene_it.hasNext()) {

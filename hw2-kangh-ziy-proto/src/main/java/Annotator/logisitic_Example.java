@@ -4,7 +4,11 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.Scanner;
-
+/**
+ * 
+ * @author Kang Huang
+ * This is just a example of using logisitic regression
+ */
 public class logisitic_Example {
       private File inputFile; 
       public Logisitic Model;

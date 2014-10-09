@@ -13,6 +13,7 @@ import org.apache.uima.jcas.JCas;
 import org.apache.uima.resource.ResourceInitializationException;
 import org.apache.uima.util.Progress;
 
+import Type.BaseAnnotation;
 import Type.Sentence;
 
 /**
@@ -24,8 +25,6 @@ import Type.Sentence;
 public class Reader extends CollectionReader_ImplBase {
 
   private File InputFile;
-
-  private boolean read_flag = false;
 
   Scanner reader;
 
@@ -58,7 +57,7 @@ public class Reader extends CollectionReader_ImplBase {
     String s[] = textLine.split(" ", 2);
     Sentence Line = new Sentence(jcas);
     Line.setID(s[0]);
-    Line.setSentence(s[1]);
+    Line.setWords(s[1]);
     Line.addToIndexes(jcas);
     // jcas.setDocumentText(text);
   }
@@ -78,9 +77,6 @@ public class Reader extends CollectionReader_ImplBase {
   @Override
   public boolean hasNext() throws IOException, CollectionException {
     // TODO Auto-generated method stub
-    /*
-     * if (!read_flag) { read_flag = true; return true; } return false;
-     */
     return reader.hasNext();
   }
 

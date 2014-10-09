@@ -9,14 +9,20 @@
     <vendor/>
     <configurationParameters>
       <configurationParameter>
-        <name>inputFile</name>
-        <description>hw2.in</description>
+        <name>GeneTagModel</name>
         <type>String</type>
         <multiValued>false</multiValued>
         <mandatory>false</mandatory>
       </configurationParameter>
     </configurationParameters> 
-    <configurationParameterSettings/>
+    <configurationParameterSettings>
+      <nameValuePair>
+        <name>GeneTagModel</name>
+        <value>
+          <string>/neenbiogenetag.HmmChunker</string>
+        </value>
+      </nameValuePair>
+    </configurationParameterSettings>
     <typeSystemDescription>
       <imports>
         <import name="descriptors.deiis_types"/>

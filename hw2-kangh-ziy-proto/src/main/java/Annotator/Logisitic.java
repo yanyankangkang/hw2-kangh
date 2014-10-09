@@ -1,5 +1,10 @@
 package Annotator;
-
+/**
+ * 
+ * @author Kang Huang
+ * @version 1.0 Build on Oct 8, 2014.
+ * contain basic operations of logistic regression, the number of features is unlimited
+ */
 public class Logisitic {
   private double X[][];
 
@@ -21,7 +26,11 @@ public class Logisitic {
     double cost;
 
     double grad[];
-
+    /**
+     * structure of returning parameters
+     * @param cost
+     * @param gradient
+     */
     public costLR(double c, double g[]) {
       cost = c;
       grad = new double[g.length];
@@ -38,7 +47,10 @@ public class Logisitic {
       return grad;
     }
   }
-
+  /**
+   * 
+   * @param numberofFeature
+   */
   public Logisitic(int numberofFeature) {
     X = new double[volumn][numberofFeature + 1];
     y = new double[volumn];
@@ -53,7 +65,11 @@ public class Logisitic {
     y[N] = answer;
     N++;
   }
-
+ /**
+  * Training the model 
+  * @param lambda the regularization factor
+  * @return
+  */
   public double[] Train(double lambda) {
     costLR temp;
     double theta[] = new double[X[0].length];
@@ -86,7 +102,12 @@ public class Logisitic {
     }
     return theta;
   }
-
+  /**
+   * 
+   * @param theta the parameter of LR
+   * @param grad  the gradient of each iteration
+   * @param alpha the learning rate
+   */
   public void update_theta(double theta[], double grad[], double alpha) {
     for (int i = 0; i < theta.length; i++) {
       theta[i] = theta[i] - alpha * grad[i];
@@ -104,7 +125,13 @@ public class Logisitic {
     }
     return sum;
   }
-
+  /**
+   * @param X the training data 
+   * @param y the label of training data
+   * @param theta parameters of LR
+   * @param lambda regularization factor
+   * @return
+   */
   public costLR cost(double X[][], double y[], double theta[], double lambda) {
     double cost = 0;
     double grad[] = new double[theta.length];
@@ -122,7 +149,12 @@ public class Logisitic {
     }
     return new costLR(cost, grad);
   }
-
+  /**
+   * classify new instance
+   * @param x new instance
+   * @param theta parameters of LR
+   * @return
+   */
   public boolean Classify(double x[], double theta[]) {
     double xx[] = new double[x.length + 1];
     xx[0] = 1;

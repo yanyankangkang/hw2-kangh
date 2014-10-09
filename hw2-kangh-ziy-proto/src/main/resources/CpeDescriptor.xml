@@ -2,13 +2,13 @@
     <collectionReader>
         <collectionIterator>
             <descriptor>
-                <import location="collectionReaderDescriptor.xml"/>
+                <import location="descriptors/collectionReaderDescriptor.xml"/>
             </descriptor>
             <configurationParameterSettings>
                 <nameValuePair>
                     <name>inputFile</name>
                     <value>
-                        <string>/home/mac/git/hw2-kangh/hw2-kangh/hw2.in</string>
+                        <string>hw2.in</string>
                     </value>
                 </nameValuePair>
             </configurationParameterSettings>
@@ -17,7 +17,7 @@
     <casProcessors casPoolSize="3" processingUnitThreadCount="1">
         <casProcessor deployment="integrated" name="aeDescriptor">
             <descriptor>
-                <import location="aeDescriptor.xml"/>
+                <import location="descriptors/aeDescriptor.xml"/>
             </descriptor>
             <deploymentParameters/>
             <errorHandling>
@@ -29,7 +29,7 @@
         </casProcessor>
         <casProcessor deployment="integrated" name="casConsumerDescriptor">
             <descriptor>
-                <import location="casConsumerDescriptor.xml"/>
+                <import location="descriptors/casConsumerDescriptor.xml"/>
             </descriptor>
             <deploymentParameters/>
             <errorHandling>
@@ -42,13 +42,7 @@
                 <nameValuePair>
                     <name>outputFile</name>
                     <value>
-                        <string>/home/mac/git/hw2-kangh/hw2-kangh/hw2-kangh.out</string>
-                    </value>
-                </nameValuePair>
-                <nameValuePair>
-                    <name>missing</name>
-                    <value>
-                        <string>/home/mac/git/hw2-kangh/hw2-kangh/out.txt</string>
+                        <string>hw2-kangh.out</string>
                     </value>
                 </nameValuePair>
             </configurationParameterSettings>

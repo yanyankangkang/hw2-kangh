@@ -4,13 +4,13 @@
   <primitive>false</primitive>  
   <delegateAnalysisEngineSpecifiers>
     <delegateAnalysisEngine key="LingPipe">
-      <import name="descriptors.LingPipe"/>
+      <import location="LingPipe.xml"/>
     </delegateAnalysisEngine>
-  <delegateAnalysisEngine key="Evaluator">
-      <import name="descriptors.Evaluator"/>
+  <delegateAnalysisEngine key="ABner">
+      <import location="ABner.xml"/>
     </delegateAnalysisEngine>
-    <delegateAnalysisEngine key="ABner">
-      <import name="descriptors.ABner"/>
+    <delegateAnalysisEngine key="Evaluator">
+      <import location="Evaluator.xml"/>
     </delegateAnalysisEngine>
   </delegateAnalysisEngineSpecifiers>
   <analysisEngineMetaData>
@@ -18,15 +18,16 @@
     <description/>
     <version>1.0</version>
     <vendor/>
-    <configurationParameters/>
+    <configurationParameters searchStrategy="language_fallback"/>
     <configurationParameterSettings/>
     <flowConstraints>
       <fixedFlow>
-        <node>LingPipe</node>
-      <node>ABner</node>
+        <node>ABner</node>
+      <node>LingPipe</node>
         <node>Evaluator</node>
       </fixedFlow>
     </flowConstraints>
+    <typePriorities/>
     <fsIndexCollection/>
     <capabilities>
       <capability>
