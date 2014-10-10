@@ -80,10 +80,10 @@ public class Abner extends BaseAnnotation {
   //* Feature: Types
 
   /** getter for Types - gets Protein
-DNA
-RNA
-Cell Line
-Cell Type
+      DNA
+      RNA
+      Cell Line
+      Cell Type
    * 
    * @return value of the feature 
    */
@@ -93,10 +93,10 @@ Cell Type
     return jcasType.ll_cas.ll_getStringValue(addr, ((Abner_Type)jcasType).casFeatCode_Types);}
     
   /** setter for Types - sets Protein
-DNA
-RNA
-Cell Line
-Cell Type 
+      DNA
+      RNA
+      Cell Line
+      Cell Type 
    * 
    * @param v value to set into the feature 
    */
