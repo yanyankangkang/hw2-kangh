@@ -10,7 +10,7 @@ public class Logisitic {
 
   private double _y[];
 
-  private int _N;
+  private int _N, _M;
 
   private static int _volumn = 15000;
 
@@ -52,9 +52,10 @@ public class Logisitic {
    * @param numberofFeature
    */
   public Logisitic(int numberofFeature) {
-    _X = new double[_volumn][numberofFeature + 1];
+    _X = new double[_volumn][numberofFeature + 1 + 3];
     _y = new double[_volumn];
     _N = 0;
+    _M = numberofFeature + 1;
   }
 
   public void get(double feature[], double answer) {
@@ -156,12 +157,48 @@ public class Logisitic {
    * @return true/false
    */
   public boolean Classify(double x[], double theta[]) {
-    double xx[] = new double[x.length + 1];
+    double xx[] = new double[x.length + 1 + 3];
     xx[0] = 1;
     for (int i = 1; i < xx.length; i++) {
       xx[i] = x[i - 1];
     }
+
+    xx[1] = Math.sqrt(2 * xx[0]) * xx[1];
+    xx[2] = Math.sqrt(2 * xx[0]) * xx[2];
+    int m = 3;
+    for (int j = 1; j < xx.length; j++) {
+      for (int k = j; k < xx.length; j++) {
+        if (j != k) {
+          xx[m] = Math.sqrt(2) * xx[j] * xx[k];
+        } else {
+          xx[m] = xx[j] * xx[j];
+        }
+        m++;
+      }
+    }
     return sigmoid(InnerProduct(xx, theta)) > 0.5;
   }
 
+  
+  public void Map(){
+    int new_M = _M;
+    for (int i = 0; i < _N; i++){
+      _X[i][1] = Math.sqrt(2 * _X[i][0]) * _X[i][1];
+      _X[i][2] = Math.sqrt(2 * _X[i][0]) * _X[i][2];
+    }
+    System.out.println("walk here!");
+    for (int j = 1; j < _M; j++){
+        for (int k = j; k < _M; k++){
+          for (int i = 0; i < _N; i++)
+            if (j != k){
+            _X[i][new_M] = Math.sqrt(2) * _X[i][j] * _X[i][k];
+            }
+            else{
+            _X[i][new_M] = _X[i][j] * _X[i][j];
+          }
+          new_M++;
+        }
+      }
+    _M = new_M;
+  }
 }

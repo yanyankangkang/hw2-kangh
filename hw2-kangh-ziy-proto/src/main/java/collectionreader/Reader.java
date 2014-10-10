@@ -13,7 +13,6 @@ import org.apache.uima.jcas.JCas;
 import org.apache.uima.resource.ResourceInitializationException;
 import org.apache.uima.util.Progress;
 
-import type.BaseAnnotation;
 import type.Sentence;
 
 /**

@@ -7,8 +7,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
 import java.util.HashMap;
-import java.util.Scanner;
-
 import org.apache.uima.cas.CAS;
 import org.apache.uima.cas.CASException;
 import org.apache.uima.cas.FSIterator;
@@ -18,9 +16,7 @@ import org.apache.uima.jcas.tcas.Annotation;
 import org.apache.uima.resource.ResourceInitializationException;
 import org.apache.uima.resource.ResourceProcessException;
 
-import type.Abner;
 import type.Answer;
-import type.Lingpipe;
 import type.Sentence;
 
 /**
@@ -66,19 +62,12 @@ public class Ouput extends CasConsumer_ImplBase {
     } catch (IOException e) {
       e.printStackTrace();
     }
- /*   testFile = new File("sample.out");
-    Scanner dict = null;
-    try {
-      dict = new Scanner(testFile);
-    } catch (FileNotFoundException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
-    }
-
-    while (dict.hasNext()) {
-      table.put(dict.nextLine(), 0);
-    }
-    words = table.size();*/
+    /*
+     * testFile = new File("sample.out"); Scanner dict = null; try { dict = new Scanner(testFile); }
+     * catch (FileNotFoundException e) { // TODO Auto-generated catch block e.printStackTrace(); }
+     * 
+     * while (dict.hasNext()) { table.put(dict.nextLine(), 0); } words = table.size();
+     */
   }
 
   @Override
@@ -111,20 +100,22 @@ public class Ouput extends CasConsumer_ImplBase {
       // System.out.println(line_it.next());
       String phrase = res.getWords();
       String ans;
-     /* if (phrase.equalsIgnoreCase("alkaline phosphatase")){
-          System.out.println(phrase  + res.getCasProcessorId());
-      }*/
-    /*  if (res.getCasProcessorId().equalsIgnoreCase("LingPipe")){
-      int outershift = countBlanks(Line.getSentence(), 0, res.getBegin());
-      int innershift = countBlanks(Line.getSentence(), res.getBegin(), res.getEnd());
-      ans = res.getID() + "|" + (res.getBegin() - outershift) + " "
-              + (res.getEnd() - outershift - innershift - 1) + "|" + phrase;
-      }*/
-      //else{
+      /*
+       * if (phrase.equalsIgnoreCase("alkaline phosphatase")){ System.out.println(phrase +
+       * res.getCasProcessorId()); }
+       */
+      /*
+       * if (res.getCasProcessorId().equalsIgnoreCase("LingPipe")){ int outershift =
+       * countBlanks(Line.getSentence(), 0, res.getBegin()); int innershift =
+       * countBlanks(Line.getSentence(), res.getBegin(), res.getEnd()); ans = res.getID() + "|" +
+       * (res.getBegin() - outershift) + " " + (res.getEnd() - outershift - innershift - 1) + "|" +
+       * phrase; }
+       */
+      // else{
       ans = res.getID() + "|" + res.getBegin() + " " + res.getEnd() + "|" + phrase;
-     // }
+      // }
       // System.out.println(res.getID() + "    " + res.getWords());
-      try {      
+      try {
         writer.write(ans + "\n");
         Match(ans);
       } catch (IOException e) {
@@ -134,38 +125,31 @@ public class Ouput extends CasConsumer_ImplBase {
     }
     //
   }
-  /* public void collectionProcessComplete(){
-     try {
-       writer.flush();
-       writer.close();
-       System.out.println("Success");
-     } catch (IOException e) {
-       // TODO Auto-generated catch block
-       e.printStackTrace();
-     }
-     System.out.println(hit + "  " + miss);
-     double P = hit * 1.0 / (hit + miss);
-     double R = hit * 1.0 / words;
-     System.out.println("Precision: " + P + " " + "Recall: " + R + "\n" + "F1-Meause: " + 2 * P * R
-             / (P + R));
-   }
-*/
-   @Override
-   public void destroy() {
-     try {
-       writer.flush();
-       writer.close();
-       System.out.println("Success");
-     } catch (IOException e) {
-       // TODO Auto-generated catch block
-       e.printStackTrace();
-     }
-     System.out.println(hit + "  " + miss);
-     double P = hit * 1.0 / (hit + miss);
-     double R = hit * 1.0 / words;
-     System.out.println("Precision: " + P + " " + "Recall: " + R + "\n" + "F1-Meause: " + 2 * P * R
-             / (P + R));
-   }
+
+  /*
+   * public void collectionProcessComplete(){ try { writer.flush(); writer.close();
+   * System.out.println("Success"); } catch (IOException e) { // TODO Auto-generated catch block
+   * e.printStackTrace(); } System.out.println(hit + "  " + miss); double P = hit * 1.0 / (hit +
+   * miss); double R = hit * 1.0 / words; System.out.println("Precision: " + P + " " + "Recall: " +
+   * R + "\n" + "F1-Meause: " + 2 * P * R / (P + R)); }
+   */
+  @Override
+  public void destroy() {
+    try {
+      writer.flush();
+      writer.close();
+      System.out.println("Success");
+    } catch (IOException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+    System.out.println(hit + "  " + miss);
+    double P = hit * 1.0 / (hit + miss);
+    double R = hit * 1.0 / words;
+    System.out.println("Precision: " + P + " " + "Recall: " + R + "\n" + "F1-Meause: " + 2 * P * R
+            / (P + R));
+  }
+
   /**
    * find whether phrase exists in standard answer set
    * 
