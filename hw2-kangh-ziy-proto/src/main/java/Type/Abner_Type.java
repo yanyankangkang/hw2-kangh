@@ -42,7 +42,7 @@ public class Abner_Type extends BaseAnnotation_Type {
   @SuppressWarnings ("hiding")
   public final static int typeIndexID = Abner.typeIndexID;
   /**  
-     @modifiable */
+      */
   @SuppressWarnings ("hiding")
   public final static boolean featOkTst = JCasRegistry.getFeatOkTst("Type.Abner");
  
