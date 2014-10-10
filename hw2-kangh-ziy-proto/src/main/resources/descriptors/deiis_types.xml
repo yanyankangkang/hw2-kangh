@@ -23,7 +23,7 @@
       </features>
     </typeDescription>
     <typeDescription>
-      <name>Type.BaseAnnotation</name>
+      <name>type.BaseAnnotation</name>
       <description/>
       <supertypeName>edu.cmu.deiis.types.Annotation</supertypeName>
       <features>
@@ -40,14 +40,14 @@
       </features>
     </typeDescription>
     <typeDescription>
-      <name>Type.Lingpipe</name>
+      <name>type.Lingpipe</name>
       <description/>
-      <supertypeName>Type.BaseAnnotation</supertypeName>
+      <supertypeName>type.BaseAnnotation</supertypeName>
       </typeDescription>
   <typeDescription>
-      <name>Type.Abner</name>
+      <name>type.Abner</name>
       <description/>
-      <supertypeName>Type.BaseAnnotation</supertypeName>
+      <supertypeName>type.BaseAnnotation</supertypeName>
       <features>
         <featureDescription>
           <name>Types</name>
@@ -61,14 +61,14 @@ Cell Type</description>
       </features>
     </typeDescription>
   <typeDescription>
-      <name>Type.Answer</name>
+      <name>type.Answer</name>
       <description/>
-      <supertypeName>Type.BaseAnnotation</supertypeName>
+      <supertypeName>type.BaseAnnotation</supertypeName>
       </typeDescription>
   <typeDescription>
-      <name>Type.Sentence</name>
+      <name>type.Sentence</name>
       <description/>
-      <supertypeName>Type.BaseAnnotation</supertypeName>
+      <supertypeName>type.BaseAnnotation</supertypeName>
     </typeDescription>
   </types>
 </typeSystemDescription>
