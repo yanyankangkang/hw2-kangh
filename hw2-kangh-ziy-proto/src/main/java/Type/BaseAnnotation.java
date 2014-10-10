@@ -11,7 +11,7 @@ import edu.cmu.deiis.types.Annotation;
 
 
 /** 
- * Updated by JCasGen Thu Oct 09 18:10:12 EDT 2014
+ * Updated by JCasGen Thu Oct 09 20:01:05 EDT 2014
  * XML source: /home/mac/workspace/11791/hw2-kangh/hw2-kangh-ziy-proto/src/main/resources/descriptors/deiis_types.xml
  * @generated */
 public class BaseAnnotation extends Annotation {

@@ -84,7 +84,7 @@ DNA
 RNA
 Cell Line
 Cell Type
-   * 
+   * @generated
    * @return value of the feature 
    */
   public String getTypes() {
@@ -97,7 +97,7 @@ DNA
 RNA
 Cell Line
 Cell Type 
-   * 
+   * @generated
    * @param v value to set into the feature 
    */
   public void setTypes(String v) {

@@ -23,63 +23,6 @@
       </features>
     </typeDescription>
     <typeDescription>
-      <name>edu.cmu.deiis.types.Token</name>
-      <description/>
-      <supertypeName>edu.cmu.deiis.types.Annotation</supertypeName>
-    </typeDescription>
-    <typeDescription>
-      <name>edu.cmu.deiis.types.NGram</name>
-      <description/>
-      <supertypeName>edu.cmu.deiis.types.Annotation</supertypeName>
-      <features>
-        <featureDescription>
-          <name>elements</name>
-          <description/>
-          <rangeTypeName>uima.cas.FSArray</rangeTypeName>
-          <elementType>edu.cmu.deiis.types.Annotation</elementType>
-        </featureDescription>
-        <featureDescription>
-          <name>elementType</name>
-          <description/>
-          <rangeTypeName>uima.cas.String</rangeTypeName>
-        </featureDescription>
-      </features>
-    </typeDescription>
-    <typeDescription>
-      <name>edu.cmu.deiis.types.Answer</name>
-      <description/>
-      <supertypeName>edu.cmu.deiis.types.Annotation</supertypeName>
-      <features>
-        <featureDescription>
-          <name>isCorrect</name>
-          <description/>
-          <rangeTypeName>uima.cas.Boolean</rangeTypeName>
-        </featureDescription>
-      </features>
-    </typeDescription>
-    <typeDescription>
-      <name>edu.cmu.deiis.types.Question</name>
-      <description/>
-      <supertypeName>edu.cmu.deiis.types.Annotation</supertypeName>
-    </typeDescription>
-    <typeDescription>
-      <name>edu.cmu.deiis.types.AnswerScore</name>
-      <description/>
-      <supertypeName>edu.cmu.deiis.types.Annotation</supertypeName>
-      <features>
-        <featureDescription>
-          <name>score</name>
-          <description/>
-          <rangeTypeName>uima.cas.Double</rangeTypeName>
-        </featureDescription>
-        <featureDescription>
-          <name>answer</name>
-          <description/>
-          <rangeTypeName>edu.cmu.deiis.types.Answer</rangeTypeName>
-        </featureDescription>
-      </features>
-    </typeDescription>
-  <typeDescription>
       <name>Type.BaseAnnotation</name>
       <description/>
       <supertypeName>edu.cmu.deiis.types.Annotation</supertypeName>
