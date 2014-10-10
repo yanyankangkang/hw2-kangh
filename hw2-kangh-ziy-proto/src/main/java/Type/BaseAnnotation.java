@@ -13,30 +13,30 @@ import edu.cmu.deiis.types.Annotation;
 /** 
  * Updated by JCasGen Thu Oct 09 20:01:05 EDT 2014
  * XML source: /home/mac/workspace/11791/hw2-kangh/hw2-kangh-ziy-proto/src/main/resources/descriptors/deiis_types.xml
- * @generated */
+ *  */
 public class BaseAnnotation extends Annotation {
-  /** @generated
-   * @ordered 
+  /** 
+   *  
    */
   @SuppressWarnings ("hiding")
   public final static int typeIndexID = JCasRegistry.register(BaseAnnotation.class);
-  /** @generated
-   * @ordered 
+  /** 
+   *  
    */
   @SuppressWarnings ("hiding")
   public final static int type = typeIndexID;
-  /** @generated
+  /** 
    * @return index of the type  
    */
   @Override
   public              int getTypeIndexID() {return typeIndexID;}
  
   /** Never called.  Disable default constructor
-   * @generated */
+   *  */
   protected BaseAnnotation() {/* intentionally empty block */}
     
   /** Internal - constructor used by generator 
-   * @generated
+   * 
    * @param addr low level Feature Structure reference
    * @param type the type of this Feature Structure 
    */
@@ -45,7 +45,7 @@ public class BaseAnnotation extends Annotation {
     readObject();
   }
   
-  /** @generated
+  /** 
    * @param jcas JCas to which this Feature Structure belongs 
    */
   public BaseAnnotation(JCas jcas) {
@@ -53,7 +53,7 @@ public class BaseAnnotation extends Annotation {
     readObject();   
   } 
 
-  /** @generated
+  /** 
    * @param jcas JCas to which this Feature Structure belongs
    * @param begin offset to the begin spot in the SofA
    * @param end offset to the end spot in the SofA 
@@ -70,7 +70,7 @@ public class BaseAnnotation extends Annotation {
    * Write your own initialization here
    * <!-- end-user-doc -->
    *
-   * @generated modifiable 
+   *  modifiable 
    */
   private void readObject() {/*default - does nothing empty block */}
      
@@ -80,7 +80,7 @@ public class BaseAnnotation extends Annotation {
   //* Feature: ID
 
   /** getter for ID - gets ID
-   * @generated
+   * 
    * @return value of the feature 
    */
   public String getID() {
@@ -89,7 +89,7 @@ public class BaseAnnotation extends Annotation {
     return jcasType.ll_cas.ll_getStringValue(addr, ((BaseAnnotation_Type)jcasType).casFeatCode_ID);}
     
   /** setter for ID - sets ID 
-   * @generated
+   * 
    * @param v value to set into the feature 
    */
   public void setID(String v) {
@@ -102,7 +102,7 @@ public class BaseAnnotation extends Annotation {
   //* Feature: Words
 
   /** getter for Words - gets a line words
-   * @generated
+   * 
    * @return value of the feature 
    */
   public String getWords() {
@@ -111,7 +111,7 @@ public class BaseAnnotation extends Annotation {
     return jcasType.ll_cas.ll_getStringValue(addr, ((BaseAnnotation_Type)jcasType).casFeatCode_Words);}
     
   /** setter for Words - sets a line words 
-   * @generated
+   * 
    * @param v value to set into the feature 
    */
   public void setWords(String v) {
