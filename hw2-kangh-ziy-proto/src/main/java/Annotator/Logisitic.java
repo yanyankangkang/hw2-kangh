@@ -28,8 +28,8 @@ public class Logisitic {
     double grad[];
     /**
      * structure of returning parameters
-     * @param cost
-     * @param gradient
+     * @param c cost
+     * @param g gradient
      */
     public costLR(double c, double g[]) {
       cost = c;

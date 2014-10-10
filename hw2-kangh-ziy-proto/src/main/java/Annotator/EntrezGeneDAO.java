@@ -31,8 +31,6 @@ import edu.cmu.lti.oaqa.bio.species_mapper.Species;
  * 
  * @author Collin McCormack (cmccorma)
  * @version 0.3
- * @see ResourceWrapper
- * @see ResourceWrapperExtended
  */
 public class EntrezGeneDAO {
   
