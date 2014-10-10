@@ -41,7 +41,7 @@ public class ABNER extends JCasAnnotator_ImplBase {
    * Analyze sentence by sentence extracting all possible words with its relevant information
    *  and stored in abner annotation
    * 
-   * @param context
+   * @param aJCas
    *          Provides access to external resources (other than the CAS).Performs any startup tasks required by this component. The framework calls this method only once, just 
    * after the AnalysisComponent has been instantiated. 
    * 

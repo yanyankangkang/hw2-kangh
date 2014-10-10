@@ -68,7 +68,7 @@ public class Logisitic {
  /**
   * Training the model 
   * @param lambda the regularization factor
-  * @return
+  * @return parameters of LR
   */
   public double[] Train(double lambda) {
     costLR temp;
@@ -130,7 +130,7 @@ public class Logisitic {
    * @param y the label of training data
    * @param theta parameters of LR
    * @param lambda regularization factor
-   * @return
+   * @return [cost, grad]
    */
   public costLR cost(double X[][], double y[], double theta[], double lambda) {
     double cost = 0;
@@ -153,7 +153,7 @@ public class Logisitic {
    * classify new instance
    * @param x new instance
    * @param theta parameters of LR
-   * @return
+   * @return true/false
    */
   public boolean Classify(double x[], double theta[]) {
     double xx[] = new double[x.length + 1];

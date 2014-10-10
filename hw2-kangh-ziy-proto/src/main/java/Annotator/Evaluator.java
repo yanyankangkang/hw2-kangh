@@ -136,7 +136,7 @@ public class Evaluator extends JCasAnnotator_ImplBase {
    *          the start position of sentence we want to count
    * @param end
    *          the end position of sentence we want to count
-   * @return
+   * @return the number of blanks
    */
   private int countBlanks(String sentence, int start, int end) {
     int count = 0;
