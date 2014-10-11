@@ -33,14 +33,14 @@ public class LingPipe extends JCasAnnotator_ImplBase {
   /**
    * the maximum length of potential gene words
    */
-  private static final int _MAX_N_BEST_CHUNKS = 10;
+  private static final int sMAX_N_BEST_CHUNKS = 10;
 
   /**
    * the handler to load the model and process given words
    */
-  private ConfidenceChunker _chunker = null;
+  private ConfidenceChunker mchunker = null;
 
-  private static double _CONFIDENCE = 0.05;
+  private static double sCONFIDENCE = 0.05;
 
   @Override
   /** 
@@ -61,7 +61,7 @@ public class LingPipe extends JCasAnnotator_ImplBase {
     super.initialize(context);
 
     try {
-      _chunker = (ConfidenceChunker) AbstractExternalizable.readResourceObject(LingPipe.class,
+      mchunker = (ConfidenceChunker) AbstractExternalizable.readResourceObject(LingPipe.class,
               (String) context.getConfigParameterValue("GeneTagModel"));
       // chunker = (ConfidenceChunker) AbstractExternalizable.readResourceObject("/neenbiogenetag");
     } catch (ClassNotFoundException e) {
@@ -93,11 +93,11 @@ public class LingPipe extends JCasAnnotator_ImplBase {
     Sentence annot = (Sentence) it.next();
     String temp = annot.getWords();
     char[] cs = temp.toCharArray();
-    Iterator<Chunk> gene_it = _chunker.nBestChunks(cs, 0, cs.length, _MAX_N_BEST_CHUNKS);
+    Iterator<Chunk> gene_it = mchunker.nBestChunks(cs, 0, cs.length, sMAX_N_BEST_CHUNKS);
     while (gene_it.hasNext()) {
       Chunk chunk = gene_it.next();
       double conf = Math.pow(2.0, chunk.score());
-      if (conf > _CONFIDENCE) {
+      if (conf > sCONFIDENCE) {
         int start = chunk.start();
         int end = chunk.end();
         String phrase = temp.substring(start, end);

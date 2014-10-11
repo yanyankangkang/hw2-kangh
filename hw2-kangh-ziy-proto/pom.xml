@@ -96,7 +96,7 @@
 	<scm>
 		<connection>scm:git:git@github.com:yanyankangkang/hw2-kangh.git</connection>
 		<developerConnection>scm:git:git@github.com:yanyankangkang/hw2-kangh.git</developerConnection>
-	  <tag>hw2-kangh-0.0.25</tag>
+	  <tag>hw2-kangh-0.0.27</tag>
   </scm>
 	<name>hw2</name>
 </project>

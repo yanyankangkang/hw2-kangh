@@ -30,7 +30,7 @@ public class Reader extends CollectionReader_ImplBase {
   JCas jcas = null;
 
   public void initialize() throws ResourceInitializationException {
-    System.out.println((String) getConfigParameterValue("inputFile"));
+    //System.out.println((String) getConfigParameterValue("inputFile"));
     InputFile = new File((String) getConfigParameterValue("inputFile"));
     try {
       reader = new Scanner(InputFile);
@@ -39,7 +39,10 @@ public class Reader extends CollectionReader_ImplBase {
       e.printStackTrace();
     }
   }
-
+  /**
+   * get next sentence if has 
+   * @param aCas the box stored your annotation
+   */
   @Override
   public void getNext(CAS aCAS) throws IOException, CollectionException {
     // TODO Auto-generated method stub
@@ -60,19 +63,25 @@ public class Reader extends CollectionReader_ImplBase {
     Line.addToIndexes(jcas);
     // jcas.setDocumentText(text);
   }
-
+  /**
+   * close the reader 
+   */
   @Override
   public void close() throws IOException {
     // TODO Auto-generated method stub
     reader.close();
   }
-
+  /**
+   * report process in real time 
+   */
   @Override
   public Progress[] getProgress() {
     // TODO Auto-generated method stub
     return null;
   }
-
+  /**
+   * find whether pointer reach to end of the document
+   */
   @Override
   public boolean hasNext() throws IOException, CollectionException {
     // TODO Auto-generated method stub

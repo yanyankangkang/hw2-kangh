@@ -48,6 +48,9 @@ public class Ouput extends CasConsumer_ImplBase {
    * //test private HashMap<String, Lingpipe> ling_dict = new HashMap<String, Lingpipe>(); private
    * double X[][] = new double [20][2]; private int N = 0;
    *************************************************************/
+  /**
+   * initialize the casconsumer 
+   */
   @Override
   public void initialize() throws ResourceInitializationException {
 
@@ -69,7 +72,9 @@ public class Ouput extends CasConsumer_ImplBase {
      * while (dict.hasNext()) { table.put(dict.nextLine(), 0); } words = table.size();
      */
   }
-
+  /**
+   * @param CAS the box stored answer annotation 
+   */
   @Override
   public void processCas(CAS aCAS) throws ResourceProcessException {
     // TODO Auto-generated method stub
@@ -133,6 +138,9 @@ public class Ouput extends CasConsumer_ImplBase {
    * miss); double R = hit * 1.0 / words; System.out.println("Precision: " + P + " " + "Recall: " +
    * R + "\n" + "F1-Meause: " + 2 * P * R / (P + R)); }
    */
+  
+  /* finish the whole pipeline
+   
   @Override
   public void destroy() {
     try {
@@ -143,13 +151,13 @@ public class Ouput extends CasConsumer_ImplBase {
       // TODO Auto-generated catch block
       e.printStackTrace();
     }
-    System.out.println(hit + "  " + miss);
+   /* System.out.println(hit + "  " + miss);
     double P = hit * 1.0 / (hit + miss);
     double R = hit * 1.0 / words;
     System.out.println("Precision: " + P + " " + "Recall: " + R + "\n" + "F1-Meause: " + 2 * P * R
             / (P + R));
   }
-
+     */
   /**
    * find whether phrase exists in standard answer set
    * 
@@ -165,13 +173,4 @@ public class Ouput extends CasConsumer_ImplBase {
     }
   }
 
-  private int countBlanks(String phrase, int start, int end) {
-    int count = 0;
-    for (int i = start; i < end; i++) {
-      if (phrase.charAt(i) == ' ') {
-        count++;
-      }
-    }
-    return count;
-  }
 }

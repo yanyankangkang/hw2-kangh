@@ -1,9 +1,10 @@
 package annotator;
+
 /**
  * 
  * @author Kang Huang
- * @version 1.0 Build on Oct 8, 2014.
- * contain basic operations of logistic regression, the number of features is unlimited
+ * @version 1.0 Build on Oct 8, 2014. contain basic operations of logistic regression, the number of
+ *          features is unlimited
  */
 public class Logisitic {
   private double _X[][];
@@ -26,10 +27,14 @@ public class Logisitic {
     double cost;
 
     double grad[];
+
     /**
      * structure of returning parameters
-     * @param c cost
-     * @param g gradient
+     * 
+     * @param c
+     *          cost
+     * @param g
+     *          gradient
      */
     public costLR(double c, double g[]) {
       cost = c;
@@ -47,6 +52,7 @@ public class Logisitic {
       return grad;
     }
   }
+
   /**
    * 
    * @param numberofFeature
@@ -66,14 +72,17 @@ public class Logisitic {
     _y[_N] = answer;
     _N++;
   }
- /**
-  * Training the model 
-  * @param lambda the regularization factor
-  * @return parameters of LR
-  */
+
+  /**
+   * Training the model
+   * 
+   * @param lambda
+   *          the regularization factor
+   * @return parameters of LR
+   */
   public double[] Train(double lambda) {
     costLR temp;
-   // Map();
+    // Map();
     double theta[] = new double[_X[0].length];
     double d = 1;
     for (int i = 0; i < theta.length; i++) {
@@ -104,11 +113,15 @@ public class Logisitic {
     }
     return theta;
   }
+
   /**
    * 
-   * @param theta the parameter of LR
-   * @param grad  the gradient of each iteration
-   * @param alpha the learning rate
+   * @param theta
+   *          the parameter of LR
+   * @param grad
+   *          the gradient of each iteration
+   * @param alpha
+   *          the learning rate
    */
   public void update_theta(double theta[], double grad[], double alpha) {
     for (int i = 0; i < theta.length; i++) {
@@ -127,11 +140,16 @@ public class Logisitic {
     }
     return sum;
   }
+
   /**
-   * @param X the training data 
-   * @param y the label of training data
-   * @param theta parameters of LR
-   * @param lambda regularization factor
+   * @param X
+   *          the training data
+   * @param y
+   *          the label of training data
+   * @param theta
+   *          parameters of LR
+   * @param lambda
+   *          regularization factor
    * @return [cost, grad]
    */
   public costLR cost(double X[][], double y[], double theta[], double lambda) {
@@ -151,10 +169,14 @@ public class Logisitic {
     }
     return new costLR(cost, grad);
   }
+
   /**
    * classify new instance
-   * @param x new instance
-   * @param theta parameters of LR
+   * 
+   * @param x
+   *          new instance
+   * @param theta
+   *          parameters of LR
    * @return true/false
    */
   public boolean Classify(double x[], double theta[]) {
@@ -163,43 +185,33 @@ public class Logisitic {
     for (int i = 0; i < x.length; i++) {
       xx[i + 1] = x[i];
     }
-   /* xx[1] = Math.sqrt(2 * xx[0]) * xx[1];
-    xx[2] = Math.sqrt(2 * xx[0]) * xx[2];
-    int m = 3;
-    for (int j = 0; j < x.length; j++) {
-      for (int k = j; k < x.length; k++) {
-        if (j != k) {
-          xx[m] = Math.sqrt(2) * x[j] * x[k];
-        } else {
-          xx[m] = x[j] * x[j];
-        }
-        m++;
-      }
-    }*/
+    /*
+     * xx[1] = Math.sqrt(2 * xx[0]) * xx[1]; xx[2] = Math.sqrt(2 * xx[0]) * xx[2]; int m = 3; for
+     * (int j = 0; j < x.length; j++) { for (int k = j; k < x.length; k++) { if (j != k) { xx[m] =
+     * Math.sqrt(2) * x[j] * x[k]; } else { xx[m] = x[j] * x[j]; } m++; } }
+     */
     return sigmoid(InnerProduct(xx, theta)) > 0.5;
   }
 
-  
-  public void Map(){
+  public void Map() {
     int new_M = _M;
-    for (int i = 0; i < _N; i++){
+    for (int i = 0; i < _N; i++) {
       _X[i][1] = Math.sqrt(2 * _X[i][0]) * _X[i][1];
       _X[i][2] = Math.sqrt(2 * _X[i][0]) * _X[i][2];
     }
     System.out.println("walk here!");
-    for (int j = 1; j < _M; j++){
-        for (int k = j; k < _M; k++){
-          for (int i = 0; i < _N; i++){
-            if (j != k){
+    for (int j = 1; j < _M; j++) {
+      for (int k = j; k < _M; k++) {
+        for (int i = 0; i < _N; i++) {
+          if (j != k) {
             _X[i][new_M] = Math.sqrt(2) * _X[i][j] * _X[i][k];
-            }
-            else{
+          } else {
             _X[i][new_M] = _X[i][j] * _X[i][j];
-            }
           }
-          new_M++;
         }
+        new_M++;
       }
+    }
     _M = new_M;
   }
 }
